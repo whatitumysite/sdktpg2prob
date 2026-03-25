@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SDN Ketapang 2 Kota Probolinggo - Portal informasi resmi sekolah. Lihat berita terbaru, galeri kegiatan, prestasi, dan pengumuman penting.">
+    <title>SDN Ketapang 2 Kota Probolinggo | Portal Informasi Sekolah</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           RESET & VARIABEL
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --kuning: #FFD93D;
+            --kuning-gelap: #E8C430;
+            --biru: #4A9FD9;
+            --biru-muda: #6EC6FF;
+            --biru-tua: #2B6DA1;
+            --biru-dongker: #1B3A5C;
+            --hijau: #7BC89C;
+            --hijau-muda: #A8E6CF;
+            --hijau-tua: #4A9B6F;
+            --oranye: #FF8C42;
+            --merah-muda: #FF6B8A;
+            --ungu: #A78BDB;
+            --putih: #FFFFFF;
+            --krem: #FFFDF5;
+            --abu: #F5F6FA;
+            --abu-border: #E8EBF0;
+            --teks: #2D3436;
+            --teks2: #5A6272;
+            --teks3: #8B95A5;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 15px 50px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--teks);
+            line-height: 1.7;
+            background: var(--putih);
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================
+           ANIMASI
+           ============================================ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+            transition: 0.3s;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand img {
+            width: 42px; height: 42px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .nav-brand img:hover { transform: rotate(8deg) scale(1.08); }
+
+        .nav-brand-text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            color: var(--biru-tua);
+            line-height: 1.25;
+        }
+
+        .nav-brand-sub {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--hijau-tua);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--teks2);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--biru-tua);
+            background: rgba(74,159,217,0.08);
+        }
+
+        .nav-links a.active {
+            color: var(--biru-tua);
+            background: rgba(74,159,217,0.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: var(--biru-tua);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ============================================
+           RUNNING TEXT / TICKER PENGUMUMAN
+           ============================================ */
+        .ticker {
+            background: linear-gradient(90deg, var(--biru-tua), var(--biru));
+            color: var(--putih);
+            padding: 8px 0;
+            margin-top: 68px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-label {
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            background: var(--kuning);
+            color: var(--teks);
+            font-weight: 900;
+            font-size: 0.78rem;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding-left: 160px;
+        }
+
+        .ticker-content span {
+            margin-right: 60px;
+        }
+
+        .ticker-content span::before {
+            content: '📌 ';
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: url('bg.jpg') center center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27,58,92,0.88) 0%,
+                rgba(43,109,161,0.78) 40%,
+                rgba(74,159,217,0.65) 100%
+            );
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 70px;
+            background: var(--putih);
+            clip-path: ellipse(55% 100% at 50% 100%);
+            z-index: 2;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        .hero-text {
+            animation: fadeUp 0.8s ease both 0.2s;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.25);
+            color: var(--putih);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-text h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.8rem;
+            color: var(--putih);
+            line-height: 1.2;
+            margin-bottom: 18px;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-text h1 .yellow { color: var(--kuning); }
+
+        .hero-text p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.08rem;
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-stats-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: var(--putih);
+            background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 18px 24px;
+            backdrop-filter: blur(8px);
+            min-width: 100px;
+            transition: 0.3s;
+        }
+
+        .hero-stat:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-4px);
+        }
+
+        .hero-stat-num {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .hero-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 12px;
+            animation: fadeUp 0.8s ease both 0.5s;
+        }
+
+        .hero-img-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            border: 3px solid rgba(255,255,255,0.2);
+            transition: 0.4s;
+        }
+
+        .hero-img-card:hover {
+            transform: scale(1.03);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .hero-img-card:first-child {
+            grid-row: 1 / 3;
+        }
+
+        .hero-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ============================================
+           SECTION UMUM
+           ============================================ */
+        section { padding: 80px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, rgba(74,159,217,0.08), rgba(123,200,156,0.08));
+            color: var(--biru-tua);
+            padding: 7px 20px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            border: 1.5px solid rgba(74,159,217,0.15);
+        }
+
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.1rem;
+            color: var(--teks);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .section-title .blue { color: var(--biru-tua); }
+        .section-title .green { color: var(--hijau-tua); }
+        .section-title .orange { color: var(--oranye); }
+
+        .section-desc {
+            font-size: 1.02rem;
+            color: var(--teks2);
+            max-width: 620px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           PROFIL SINGKAT SECTION
+           ============================================ */
+        .profil-section { background: var(--putih); }
+
+        .profil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .profil-img-wrapper {
+            position: relative;
+        }
+
+        .profil-img-main {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profil-img-main img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
+
+        .profil-float-card {
+            position: absolute;
+            bottom: -20px;
+            right: -15px;
+            background: var(--putih);
+            border-radius: var(--radius);
+            padding: 18px 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: float 3.5s ease-in-out infinite;
+            z-index: 2;
+            border: 2px solid var(--abu-border);
+        }
+
+        .profil-float-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--kuning), var(--oranye));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .profil-float-text strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--teks);
+        }
+
+        .profil-float-text span {
+            font-size: 0.78rem;
+            color: var(--teks3);
+            font-weight: 600;
+        }
+
+        .profil-content h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.9rem;
+            color: var(--teks);
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .profil-content p {
+            color: var(--teks2);
+            margin-bottom: 16px;
+            font-size: 0.98rem;
+            line-height: 1.85;
+        }
+
+        .profil-visi-misi {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .vm-card {
+            background: var(--abu);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            border: 1.5px solid var(--abu-border);
+            transition: 0.3s;
+        }
+
+        .vm-card:hover {
+            border-color: var(--biru-muda);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-3px);
+        }
+
+        .vm-card h4 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.95rem;
+            color: var(--biru-tua);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vm-card p {
+            font-size: 0.85rem;
+            color: var(--teks2);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ============================================
+           PENGUMUMAN & BERITA SECTION
+           ============================================ */
+        .berita-section {
+            background: var(--abu);
+        }
+
+        .berita-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 35px;
+        }
+
+        /* Berita Utama */
+        .berita-utama {
+            display: grid;
+            gap: 25px;
+        }
+
+        .berita-card {
+            background: var(--putih);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--abu-border);
+            transition: 0.35s;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+        }
+
+        .berita-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--biru-muda);
+        }
+
+        .berita-card-img {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .berita-card-img img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .berita-card:hover .berita-card-img img {
+            transform: scale(1.05);
+        }
+
+        .berita-card-body {
+            padding: 28px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .berita-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            width: fit-content;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .berita-tag.kegiatan { background: rgba(74,159,217,0.1); color: var(--biru-tua); }
+        .berita-tag.prestasi { background: rgba(255,217,61,0.2); color: #9B7A00; }
+        .berita-tag.akademik { background: rgba(123,200,156,0.15); color: var(--hijau-tua); }
+        .berita-tag.info { background: rgba(167,139,219,0.12); color: #6B4FA0; }
+
+        .berita-card-body h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.12rem;
+            color: var(--teks);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .berita-card-body p {
+            font-size: 0.9rem;
+            color: var(--teks2);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .berita-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.78rem;
+            color: var(--teks3);
+            font-weight: 700;
+        }
+
+        .berita-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Sidebar Pengumuman */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--putih);
+            border-radius: var(--radius);
+            padding: 25px 22px;
+            box-shadow: var(--shadow-sm);
+            border: 1.5px solid var(--abu-border);
+        }
+
+        .sidebar-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.05rem;
+            color: var(--teks);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--abu-border);
+        }
+
+        .pengumuman-list { display: flex; flex-direction: column; gap: 14px; }
+
+        .pengumuman-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 12px;
+            border-radius: 12px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+        }
+
+        .pengumuman-item:hover {
+            background: var(--abu);
+            border-color: var(--abu-border);
+        }
+
+        .pengumuman-date {
+            flex-shrink: 0;
+            width: 50px; height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--biru), var(--biru-tua));
+            color: var(--putih);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        .pengumuman-date .day { font-size: 1.1rem; line-height: 1; }
+        .pengumuman-date .month { font-size: 0.6rem; text-transform: uppercase; }
+
+        .pengumuman-text strong {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--teks);
+            margin-bottom: 3px;
+            line-height: 1.35;
+        }
+
+        .pengumuman-text span {
+            font-size: 0.78rem;
+            color: var(--teks3);
+            font-weight: 600;
+        }
+
+        /* Agenda */
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1.5px dashed var(--abu-border);
+        }
+
+        .agenda-item:last-child { border: none; }
+
+        .agenda-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .agenda-dot.blue { background: var(--biru); }
+        .agenda-dot.green { background: var(--hijau); }
+        .agenda-dot.orange { background: var(--oranye); }
+        .agenda-dot.pink { background: var(--merah-muda); }
+
+        .agenda-info strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--teks);
+        }
+
+        .agenda-info span {
+            font-size: 0.75rem;
+            color: var(--teks3);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           PRESTASI SECTION
+           ============================================ */
+        .prestasi-section { background: var(--putih); }
+
+        .prestasi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .prestasi-card {
+            background: var(--putih);
+            border-radius: var(--radius);
+            padding: 30px 22px;
+            text-align: center;
+            border: 2px solid var(--abu-border);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prestasi-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+
+        .prestasi-card:nth-child(1)::before { background: linear-gradient(90deg, var(--kuning), var(--oranye)); }
+        .prestasi-card:nth-child(2)::before { background: linear-gradient(90deg, var(--biru-muda), var(--biru-tua)); }
+        .prestasi-card:nth-child(3)::before { background: linear-gradient(90deg, var(--hijau-muda), var(--hijau-tua)); }
+        .prestasi-card:nth-child(4)::before { background: linear-gradient(90deg, var(--merah-muda), var(--ungu)); }
+
+        .prestasi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--biru-muda);
+        }
+
+        .prestasi-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .prestasi-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.05rem;
+            color: var(--teks);
+            margin-bottom: 8px;
+        }
+
+        .prestasi-card p {
+            font-size: 0.85rem;
+            color: var(--teks2);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .prestasi-year {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 20px;
+            background: var(--abu);
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--teks3);
+        }
+
+        /* ============================================
+           GALERI FOTO SECTION
+           ============================================ */
+        .galeri-section {
+            background: linear-gradient(180deg, var(--abu) 0%, var(--putih) 100%);
+        }
+
+        .galeri-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .galeri-tab {
+            padding: 9px 22px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            background: var(--putih);
+            border: 2px solid var(--abu-border);
+            color: var(--teks2);
+            transition: 0.3s;
+        }
+
+        .galeri-tab:hover,
+        .galeri-tab.active {
+            background: var(--biru-tua);
+            color: var(--putih);
+            border-color: var(--biru-tua);
+        }
+
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
+            gap: 14px;
+        }
+
+        .galeri-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--abu-border);
+            transition: 0.4s;
+        }
+
+        .galeri-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+            border-color: var(--biru-muda);
+        }
+
+        .galeri-item.tall { grid-row: span 2; }
+        .galeri-item.wide { grid-column: span 2; }
+
+        .galeri-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .galeri-item:hover img { transform: scale(1.08); }
+
+        .galeri-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(27,58,92,0.85) 0%, transparent 55%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .galeri-item:hover .galeri-overlay { opacity: 1; }
+
+        .galeri-overlay h4 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--putih);
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .galeri-overlay span {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           DATA / STATISTIK SECTION
+           ============================================ */
+        .data-section {
+            background: linear-gradient(135deg, var(--biru-dongker) 0%, var(--biru-tua) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-section::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 0; right: 0;
+            height: 50px;
+            background: linear-gradient(180deg, var(--abu) 0%, var(--putih) 100%);
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .data-card {
+            text-align: center;
+            padding: 35px 15px;
+            border-radius: var(--radius);
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.1);
+            transition: 0.35s;
+            backdrop-filter: blur(5px);
+        }
+
+        .data-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .data-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .data-num {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2rem;
+            color: var(--kuning);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .data-label {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           FASILITAS SECTION
+           ============================================ */
+        .fasilitas-section { background: var(--putih); }
+
+        .fasilitas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .fasilitas-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 2px solid var(--abu-border);
+            transition: 0.35s;
+            background: var(--putih);
+        }
+
+        .fasilitas-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--hijau);
+        }
+
+        .fasilitas-card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .fasilitas-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .fasilitas-card:hover .fasilitas-card-img img {
+            transform: scale(1.06);
+        }
+
+        .fasilitas-card-body {
+            padding: 22px 20px;
+        }
+
+        .fasilitas-card-body h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1rem;
+            color: var(--teks);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fasilitas-card-body p {
+            font-size: 0.85rem;
+            color: var(--teks2);
+            line-height: 1.65;
+        }
+
+        /* ============================================
+           MAPS SECTION
+           ============================================ */
+        .maps-section {
+            background: var(--abu);
+            padding: 80px 0 90px;
+        }
+
+        .maps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .maps-info h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            color: var(--teks);
+            margin-bottom: 16px;
+        }
+
+        .maps-info p {
+            color: var(--teks2);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .maps-contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .maps-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .maps-contact-icon {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: var(--putih);
+            border: 1.5px solid var(--abu-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .maps-contact-text strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--teks);
+        }
+
+        .maps-contact-text span {
+            font-size: 0.83rem;
+            color: var(--teks3);
+            font-weight: 600;
+        }
+
+        .btn-maps {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: linear-gradient(135deg, var(--biru), var(--biru-tua));
+            color: var(--putih);
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.35s;
+            box-shadow: 0 5px 18px rgba(43,109,161,0.3);
+        }
+
+        .btn-maps:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(43,109,161,0.45);
+        }
+
+        .maps-iframe-wrap {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--abu-border);
+        }
+
+        .maps-iframe-wrap iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            display: block;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: linear-gradient(135deg, #141E2B 0%, #1B3048 100%);
+            color: rgba(255,255,255,0.7);
+            padding: 60px 0 0;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 0; right: 0;
+            height: 45px;
+            background: var(--abu);
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 45px;
+        }
+
+        .footer-brand img {
+            width: 50px; height: 50px;
+            object-fit: contain;
+            margin-bottom: 14px;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.15rem;
+            color: var(--putih);
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer h4 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 0.95rem;
+            color: var(--putih);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 35px; height: 3px;
+            background: linear-gradient(90deg, var(--kuning), var(--oranye));
+            border-radius: 2px;
+        }
+
+        .footer-links li { margin-bottom: 8px; }
+
+        .footer-links a {
+            font-size: 0.88rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--kuning);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 18px 0;
+            text-align: center;
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom .heart {
+            color: var(--merah-muda);
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        /* ============================================
+           SCROLL TOP BUTTON
+           ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 25px; right: 25px;
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--biru), var(--biru-tua));
+            color: var(--putih);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 18px rgba(43,109,161,0.4);
+            transition: 0.35s;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(43,109,161,0.55);
+        }
+
+        /* ============================================
+           RESPONSIF
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { margin: 0 auto 30px; }
+            .hero-stats-row { justify-content: center; }
+            .hero-image-grid { max-width: 500px; margin: 0 auto; }
+
+            .prestasi-grid { grid-template-columns: repeat(2, 1fr); }
+            .galeri-grid { grid-template-columns: repeat(3, 1fr); }
+            .data-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 18px;
+                z-index: 1001;
+            }
+
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.1rem; padding: 12px 28px; }
+
+            .ticker-label { font-size: 0.7rem; padding: 0 12px; }
+            .ticker-content { padding-left: 120px; font-size: 0.8rem; }
+
+            .hero { min-height: auto; padding: 40px 0; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-image-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+            .hero-img-card:first-child { grid-row: auto; }
+
+            section { padding: 60px 0; }
+            .section-title { font-size: 1.7rem; }
+
+            .profil-grid { grid-template-columns: 1fr; gap: 30px; }
+            .profil-img-main img { height: 260px; }
+            .profil-visi-misi { grid-template-columns: 1fr; }
+            .profil-float-card { right: 10px; bottom: -15px; }
+
+            .berita-grid { grid-template-columns: 1fr; }
+            .berita-card { grid-template-columns: 1fr; }
+            .berita-card-img img { min-height: 180px; height: 200px; }
+
+            .prestasi-grid { grid-template-columns: 1fr; }
+            .galeri-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 180px;
+            }
+            .galeri-item.tall { grid-row: auto; }
+            .galeri-item.wide { grid-column: auto; }
+
+            .data-grid { grid-template-columns: repeat(2, 1fr); }
+            .fasilitas-grid { grid-template-columns: 1fr; }
+            .maps-grid { grid-template-columns: 1fr; }
+            .maps-iframe-wrap iframe { height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-stats-row { gap: 12px; }
+            .hero-stat { padding: 14px 16px; min-width: 80px; }
+            .hero-stat-num { font-size: 1.4rem; }
+            .galeri-grid { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+            .data-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         NAVBAR
+         ========================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand">
+                <img src="logo.png" alt="Logo SDN Ketapang 2" loading="lazy">
+                <span class="nav-brand-text">
+                    SDN Ketapang 2
+                    <span class="nav-brand-sub">Kota Probolinggo</span>
+                </span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#profil">Profil</a>
+                <a href="#berita">Berita</a>
+                <a href="#prestasi">Prestasi</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#fasilitas">Fasilitas</a>
+                <a href="#lokasi">Lokasi</a>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         RUNNING TEXT PENGUMUMAN (TICKER)
+         ========================================== -->
+    <div class="ticker">
+        <div class="ticker-label">📢 INFO</div>
+        <div class="ticker-content">
+            <span>Pendaftaran Peserta Didik Baru Tahun Ajaran 2025/2026 telah dibuka!</span>
+            <span>Selamat kepada Tim Pramuka yang meraih Juara 1 Jambore Tingkat Kota 🏆</span>
+            <span>Ujian Akhir Semester Genap dilaksanakan tanggal 9–14 Juni 2025</span>
+            <span>Libur Hari Raya Idul Adha: 7–8 Juni 2025</span>
+            <span>Kegiatan Class Meeting akan diadakan minggu ke-3 Juni 2025 🎉</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <!-- Teks Hero -->
+                <div class="hero-text">
+                    <div class="hero-badge">🏫 Portal Informasi Sekolah</div>
+                    <h1>
+                        <span class="yellow">SDN Ketapang 2</span><br>
+                        Kota Probolinggo
+                    </h1>
+                    <p>
+                        Sekolah dasar unggulan yang berkomitmen mencetak generasi berkarakter, berprestasi, dan berwawasan luas. Temukan informasi terkini seputar kegiatan, prestasi, dan perkembangan sekolah kami.
+                    </p>
+                    <div class="hero-stats-row">
+                        <div class="hero-stat">
+                            <span class="hero-stat-num">A</span>
+                            <span class="hero-stat-label">Akreditasi</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num">350+</span>
+                            <span class="hero-stat-label">Siswa Aktif</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num">30+</span>
+                            <span class="hero-stat-label">Tenaga Pendidik</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="hero-stat-num">50+</span>
+                            <span class="hero-stat-label">Prestasi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Foto Hero -->
+                <div class="hero-image-grid">
+                    <div class="hero-img-card">
+                        <img src="bg.png" alt="Kegiatan belajar mengajar SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="hero-img-card">
+                        <img src="bg.png" alt="Upacara bendera SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="hero-img-card">
+                        <img src="bg.png" alt="Ekstrakurikuler SDN Ketapang 2" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PROFIL SINGKAT SECTION
+         ========================================== -->
+    <section class="profil-section" id="profil">
+        <div class="container">
+            <div class="profil-grid">
+                <!-- Gambar Profil -->
+                <div class="profil-img-wrapper">
+                    <div class="profil-img-main">
+                        <img src="bg.png" alt="Gedung SDN Ketapang 2 Kota Probolinggo" loading="lazy">
+                    </div>
+                    <div class="profil-float-card">
+                        <div class="profil-float-icon">🏆</div>
+                        <div class="profil-float-text">
+                            <strong>Sekolah Adiwiyata</strong>
+                            <span>Tingkat Kota Probolinggo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konten Profil -->
+                <div class="profil-content">
+                    <span class="section-badge">📖 Profil Sekolah</span>
+                    <h2>Mengenal Lebih Dekat <span style="color:var(--biru-tua)">SDN Ketapang 2</span></h2>
+                    <p>
+                        SDN Ketapang 2 merupakan salah satu sekolah dasar negeri di Kota Probolinggo yang telah berdiri dan melayani dunia pendidikan selama lebih dari dua dekade. Dengan akreditasi <strong>A</strong>, kami terus meningkatkan mutu pendidikan melalui tenaga pengajar profesional dan kurikulum terkini.
+                    </p>
+                    <p>
+                        Sekolah kami mengusung konsep pembelajaran yang menyeimbangkan antara penguasaan akademik, pembentukan karakter, pengembangan bakat, serta penguatan nilai-nilai keagamaan dan budaya lokal.
+                    </p>
+
+                    <!-- Visi & Misi -->
+                    <div class="profil-visi-misi">
+                        <div class="vm-card">
+                            <h4>🎯 Visi</h4>
+                            <p>Terwujudnya peserta didik yang beriman, berilmu, berprestasi, berbudaya lingkungan, dan berkarakter Pancasila.</p>
+                        </div>
+                        <div class="vm-card">
+                            <h4>🚀 Misi</h4>
+                            <p>Melaksanakan pembelajaran inovatif, menumbuhkan budaya literasi, membina prestasi akademik & non-akademik, serta membentuk akhlak mulia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BERITA & PENGUMUMAN SECTION
+         ========================================== -->
+    <section class="berita-section" id="berita">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📰 Berita & Pengumuman</span>
+                <h2 class="section-title">Informasi <span class="blue">Terkini</span></h2>
+                <p class="section-desc">
+                    Ikuti kabar terbaru seputar kegiatan, prestasi, dan berbagai informasi penting dari SDN Ketapang 2.
+                </p>
+            </div>
+
+            <div class="berita-grid">
+                <!-- Kolom Berita Utama -->
+                <div class="berita-utama">
+                    <!-- Berita 1 -->
+                    <article class="berita-card">
+                        <div class="berita-card-img">
+                            <img src="bg.png" alt="Peringatan Hari Pendidikan Nasional di SDN Ketapang 2" loading="lazy">
+                        </div>
+                        <div class="berita-card-body">
+                            <span class="berita-tag kegiatan">Kegiatan</span>
+                            <h3>Peringatan Hari Pendidikan Nasional 2025</h3>
+                            <p>Seluruh warga sekolah mengikuti upacara peringatan Hardiknas yang diisi dengan penampilan drama musikal dan pembacaan puisi oleh siswa-siswi berprestasi.</p>
+                            <div class="berita-meta">
+                                <span>📅 2 Mei 2025</span>
+                                <span>👤 Admin</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Berita 2 -->
+                    <article class="berita-card">
+                        <div class="berita-card-img">
+                            <img src="bg.png" alt="Tim Pramuka SDN Ketapang 2 meraih juara" loading="lazy">
+                        </div>
+                        <div class="berita-card-body">
+                            <span class="berita-tag prestasi">Prestasi</span>
+                            <h3>Tim Pramuka Raih Juara 1 Jambore Tingkat Kota 🏆</h3>
+                            <p>Regu Garuda berhasil menyabet juara pertama dalam lomba Jambore Pramuka Tingkat Kota Probolinggo dengan tampil memukau di berbagai pos tantangan.</p>
+                            <div class="berita-meta">
+                                <span>📅 25 April 2025</span>
+                                <span>👤 Pembina Pramuka</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Berita 3 -->
+                    <article class="berita-card">
+                        <div class="berita-card-img">
+                            <img src="bg.png" alt="Workshop Kurikulum Merdeka SDN Ketapang 2" loading="lazy">
+                        </div>
+                        <div class="berita-card-body">
+                            <span class="berita-tag akademik">Akademik</span>
+                            <h3>Workshop Implementasi Kurikulum Merdeka untuk Guru</h3>
+                            <p>Seluruh tenaga pendidik mengikuti pelatihan intensif tentang penerapan Kurikulum Merdeka guna meningkatkan kualitas proses belajar mengajar di kelas.</p>
+                            <div class="berita-meta">
+                                <span>📅 18 April 2025</span>
+                                <span>👤 Wakil Kepala Sekolah</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Pengumuman -->
+                    <div class="sidebar-card">
+                        <h3>📌 Pengumuman</h3>
+                        <div class="pengumuman-list">
+                            <div class="pengumuman-item">
+                                <div class="pengumuman-date">
+                                    <span class="day">9</span>
+                                    <span class="month">Jun</span>
+                                </div>
+                                <div class="pengumuman-text">
+                                    <strong>Ujian Akhir Semester Genap</strong>
+                                    <span>Dilaksanakan 9–14 Juni 2025</span>
+                                </div>
+                            </div>
+                            <div class="pengumuman-item">
+                                <div class="pengumuman-date">
+                                    <span class="day">16</span>
+                                    <span class="month">Jun</span>
+                                </div>
+                                <div class="pengumuman-text">
+                                    <strong>Class Meeting & Pentas Seni</strong>
+                                    <span>Kegiatan akhir semester genap</span>
+                                </div>
+                            </div>
+                            <div class="pengumuman-item">
+                                <div class="pengumuman-date">
+                                    <span class="day">21</span>
+                                    <span class="month">Jun</span>
+                                </div>
+                                <div class="pengumuman-text">
+                                    <strong>Pembagian Rapor</strong>
+                                    <span>Wali murid harap hadir pukul 08.00</span>
+                                </div>
+                            </div>
+                            <div class="pengumuman-item">
+                                <div class="pengumuman-date">
+                                    <span class="day">1</span>
+                                    <span class="month">Jul</span>
+                                </div>
+                                <div class="pengumuman-text">
+                                    <strong>Pendaftaran Siswa Baru 2025/2026</strong>
+                                    <span>Kuota terbatas, segera daftar!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agenda Mendatang -->
+                    <div class="sidebar-card">
+                        <h3>🗓️ Agenda Mendatang</h3>
+                        <div class="agenda-item">
+                            <span class="agenda-dot blue"></span>
+                            <div class="agenda-info">
+                                <strong>Lomba Cerdas Cermat</strong>
+                                <span>12 Juni 2025 — Aula Sekolah</span>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-dot green"></span>
+                            <div class="agenda-info">
+                                <strong>Penanaman Pohon Bersama</strong>
+                                <span>15 Juni 2025 — Halaman Sekolah</span>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-dot orange"></span>
+                            <div class="agenda-info">
+                                <strong>Pentas Seni Akhir Tahun</strong>
+                                <span>18 Juni 2025 — Aula Sekolah</span>
+                            </div>
+                        </div>
+                        <div class="agenda-item">
+                            <span class="agenda-dot pink"></span>
+                            <div class="agenda-info">
+                                <strong>Wisuda & Perpisahan Kelas 6</strong>
+                                <span>20 Juni 2025 — Aula Sekolah</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PRESTASI SECTION
+         ========================================== -->
+    <section class="prestasi-section" id="prestasi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🏆 Prestasi</span>
+                <h2 class="section-title">Catatan <span class="orange">Prestasi</span> Kami</h2>
+                <p class="section-desc">
+                    Berbagai penghargaan dan prestasi yang telah diraih siswa-siswi dan sekolah kami dalam bidang akademik maupun non-akademik.
+                </p>
+            </div>
+
+            <div class="prestasi-grid">
+                <div class="prestasi-card">
+                    <span class="prestasi-icon">🥇</span>
+                    <h3>Juara 1 Olimpiade Matematika</h3>
+                    <p>Tingkat Kota Probolinggo — siswa kelas 5 berhasil meraih medali emas.</p>
+                    <span class="prestasi-year">2025</span>
+                </div>
+                <div class="prestasi-card">
+                    <span class="prestasi-icon">🏆</span>
+                    <h3>Juara 1 Jambore Pramuka</h3>
+                    <p>Regu Garuda unggul di semua pos tantangan tingkat Kota Probolinggo.</p>
+                    <span class="prestasi-year">2025</span>
+                </div>
+                <div class="prestasi-card">
+                    <span class="prestasi-icon">🌿</span>
+                    <h3>Penghargaan Sekolah Adiwiyata</h3>
+                    <p>Diakui sebagai sekolah berwawasan lingkungan tingkat Kota Probolinggo.</p>
+                    <span class="prestasi-year">2024</span>
+                </div>
+                <div class="prestasi-card">
+                    <span class="prestasi-icon">🎨</span>
+                    <h3>Juara 2 FLS2N Seni Tari</h3>
+                    <p>Siswa kelas 4 memukau juri di Festival Lomba Seni Siswa Nasional.</p>
+                    <span class="prestasi-year">2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         GALERI FOTO SECTION
+         ========================================== -->
+    <section class="galeri-section" id="galeri">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📸 Galeri</span>
+                <h2 class="section-title">Galeri <span class="blue">Kegiatan</span></h2>
+                <p class="section-desc">
+                    Kumpulan dokumentasi kegiatan, suasana sekolah, dan momen-momen berharga di SDN Ketapang 2.
+                </p>
+            </div>
+
+            <!-- Tab Filter -->
+            <div class="galeri-tabs">
+                <span class="galeri-tab active">Semua</span>
+                <span class="galeri-tab">Upacara</span>
+                <span class="galeri-tab">Pembelajaran</span>
+                <span class="galeri-tab">Ekskul</span>
+                <span class="galeri-tab">Lomba</span>
+            </div>
+
+            <!-- Grid Foto -->
+            <div class="galeri-grid">
+                <div class="galeri-item tall">
+                    <img src="bg.png" alt="Upacara bendera SDN Ketapang 2" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Upacara Hari Senin</h4>
+                        <span>Pembiasaan Rutin</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Kegiatan belajar di kelas" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Belajar di Kelas</h4>
+                        <span>Pembelajaran Aktif</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Praktikum sains" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Praktikum Sains</h4>
+                        <span>Laboratorium</span>
+                    </div>
+                </div>
+                <div class="galeri-item wide">
+                    <img src="bg.png" alt="Lomba cerdas cermat" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Lomba Cerdas Cermat</h4>
+                        <span>Kompetisi Akademik</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Latihan pramuka" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Latihan Pramuka</h4>
+                        <span>Ekstrakurikuler</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Pentas seni" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Pentas Seni</h4>
+                        <span>Kreativitas Siswa</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Senam pagi" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Senam Pagi</h4>
+                        <span>Olahraga Rutin</span>
+                    </div>
+                </div>
+                <div class="galeri-item">
+                    <img src="bg.png" alt="Kegiatan literasi" loading="lazy">
+                    <div class="galeri-overlay">
+                        <h4>Kegiatan Literasi</h4>
+                        <span>Perpustakaan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         DATA SEKOLAH / STATISTIK SECTION
+         ========================================== -->
+    <section class="data-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:var(--kuning)">📊 Data Sekolah</span>
+                <h2 class="section-title" style="color:var(--putih)">SDN Ketapang 2 <span style="color:var(--kuning)">dalam Angka</span></h2>
+                <p class="section-desc" style="color:rgba(255,255,255,0.7)">
+                    Sekilas data dan fakta tentang sekolah kami yang terus berkembang dari tahun ke tahun.
+                </p>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-card">
+                    <span class="data-icon">👨‍🎓</span>
+                    <span class="data-num">350+</span>
+                    <span class="data-label">Siswa Aktif</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-icon">👩‍🏫</span>
+                    <span class="data-num">30+</span>
+                    <span class="data-label">Tenaga Pendidik</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-icon">🏫</span>
+                    <span class="data-num">18</span>
+                    <span class="data-label">Ruang Kelas</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-icon">🏆</span>
+                    <span class="data-num">50+</span>
+                    <span class="data-label">Total Prestasi</span>
+                </div>
+                <div class="data-card">
+                    <span class="data-icon">📅</span>
+                    <span class="data-num">20+</span>
+                    <span class="data-label">Tahun Berdiri</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FASILITAS SECTION
+         ========================================== -->
+    <section class="fasilitas-section" id="fasilitas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🏫 Fasilitas</span>
+                <h2 class="section-title">Fasilitas <span class="green">Sekolah</span></h2>
+                <p class="section-desc">
+                    Kami terus berbenah dan meningkatkan fasilitas agar proses belajar mengajar semakin nyaman dan optimal.
+                </p>
+            </div>
+
+            <div class="fasilitas-grid">
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="Ruang kelas SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>📚 Ruang Kelas Nyaman</h3>
+                        <p>18 ruang kelas ber-AC yang dilengkapi meja-kursi ergonomis dan media pembelajaran interaktif.</p>
+                    </div>
+                </div>
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="Perpustakaan SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>📖 Perpustakaan Lengkap</h3>
+                        <p>Koleksi ribuan buku bacaan, referensi akademik, dan area baca yang nyaman untuk menumbuhkan minat literasi.</p>
+                    </div>
+                </div>
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="Lab komputer SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>💻 Lab Komputer</h3>
+                        <p>Laboratorium komputer berjaringan internet untuk mendukung pembelajaran digital dan teknologi informasi.</p>
+                    </div>
+                </div>
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="Lapangan olahraga SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>⚽ Lapangan Olahraga</h3>
+                        <p>Lapangan serbaguna untuk kegiatan olahraga, upacara, senam pagi, dan berbagai kegiatan outdoor lainnya.</p>
+                    </div>
+                </div>
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="Mushola SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>🕌 Mushola</h3>
+                        <p>Tempat ibadah yang bersih dan nyaman untuk kegiatan sholat berjamaah dan pendidikan keagamaan.</p>
+                    </div>
+                </div>
+                <div class="fasilitas-card">
+                    <div class="fasilitas-card-img">
+                        <img src="bg.png" alt="UKS SDN Ketapang 2" loading="lazy">
+                    </div>
+                    <div class="fasilitas-card-body">
+                        <h3>🏥 UKS & Kantin Sehat</h3>
+                        <p>Unit Kesehatan Sekolah yang siap siaga serta kantin dengan menu makanan sehat dan higienis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         MAPS / LOKASI SECTION
+         ========================================== -->
+    <section class="maps-section" id="lokasi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📍 Lokasi</span>
+                <h2 class="section-title">Temukan <span class="blue">Kami</span></h2>
+                <p class="section-desc">
+                    Lokasi sekolah kami strategis dan mudah diakses dari berbagai penjuru Kota Probolinggo.
+                </p>
+            </div>
+
+            <div class="maps-grid">
+                <!-- Info Kontak -->
+                <div class="maps-info">
+                    <h3>📍 SDN Ketapang 2 Kota Probolinggo</h3>
+                    <p>
+                        Kami berlokasi di lingkungan yang tenang dan asri, sangat mendukung suasana belajar yang nyaman dan kondusif bagi siswa-siswi kami.
+                    </p>
+
+                    <div class="maps-contact-list">
+                        <div class="maps-contact-item">
+                            <div class="maps-contact-icon">🏠</div>
+                            <div class="maps-contact-text">
+                                <strong>Alamat</strong>
+                                <span>Jl. Ketapang, Kota Probolinggo, Jawa Timur</span>
+                            </div>
+                        </div>
+                        <div class="maps-contact-item">
+                            <div class="maps-contact-icon">🕐</div>
+                            <div class="maps-contact-text">
+                                <strong>Jam Operasional</strong>
+                                <span>Senin – Sabtu: 06.30 – 13.00 WIB</span>
+                            </div>
+                        </div>
+                        <div class="maps-contact-item">
+                            <div class="maps-contact-icon">📞</div>
+                            <div class="maps-contact-text">
+                                <strong>Telepon</strong>
+                                <span>Hubungi tata usaha sekolah</span>
+                            </div>
+                        </div>
+                        <div class="maps-contact-item">
+                            <div class="maps-contact-icon">📧</div>
+                            <div class="maps-contact-text">
+                                <strong>Pendaftaran</strong>
+                                <span>Dibuka setiap tahun ajaran baru</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://maps.app.goo.gl/iC9kN5AshwfYmfTw6" target="_blank" rel="noopener noreferrer" class="btn-maps">
+                        🗺️ Buka di Google Maps
+                    </a>
+                </div>
+
+                <!-- Iframe Peta -->
+                <div class="maps-iframe-wrap">
+                    <a href="https://maps.app.goo.gl/iC9kN5AshwfYmfTw6" target="_blank" rel="noopener noreferrer" title="Lihat lokasi SDN Ketapang 2 di Google Maps">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0!2d113.22!3d-7.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7a1b0a0a0a0a1%3A0x0!2sSDN+Ketapang+2+Probolinggo!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+                            width="100%"
+                            height="400"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Peta Lokasi SDN Ketapang 2 Kota Probolinggo">
+                        </iframe>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Logo SDN Ketapang 2" loading="lazy">
+                    <h3>SDN Ketapang 2 Kota Probolinggo</h3>
+                    <p>
+                        Portal informasi resmi SDN Ketapang 2. Menyajikan berita terkini, dokumentasi kegiatan, pengumuman, dan informasi penting seputar sekolah.
+                    </p>
+                </div>
+
+                <!-- Navigasi -->
+                <div>
+                    <h4>Navigasi</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">🏠 Beranda</a></li>
+                        <li><a href="#profil">📖 Profil</a></li>
+                        <li><a href="#berita">📰 Berita</a></li>
+                        <li><a href="#prestasi">🏆 Prestasi</a></li>
+                        <li><a href="#galeri">📸 Galeri</a></li>
+                    </ul>
+                </div>
+
+                <!-- Informasi -->
+                <div>
+                    <h4>Informasi</h4>
+                    <ul class="footer-links">
+                        <li><a href="#fasilitas">🏫 Fasilitas</a></li>
+                        <li><a href="#lokasi">📍 Lokasi</a></li>
+                        <li><a href="#berita">📌 Pengumuman</a></li>
+                        <li><a href="#berita">🗓️ Agenda</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak -->
+                <div>
+                    <h4>Kontak</h4>
+                    <ul class="footer-links">
+                        <li>📍 Jl. Ketapang, Kota Probolinggo</li>
+                        <li>🕐 Senin – Sabtu, 06.30–13.00</li>
+                        <li>📧 Info di tata usaha sekolah</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>
+                    © 2025 SDN Ketapang 2 Kota Probolinggo. Dibuat dengan <span class="heart">❤️</span> untuk pendidikan yang lebih baik.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         TOMBOL SCROLL KE ATAS
+         ========================================== -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke atas">↑</button>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll to Top
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Galeri Tab (visual toggle saja)
+        document.querySelectorAll('.galeri-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
